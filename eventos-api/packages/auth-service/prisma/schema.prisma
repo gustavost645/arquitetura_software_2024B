@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(uuid())
+  username   String
+  email      String   @unique
+  password   String
+  logradouro String?
+  numero     String?
+  bairro     String?
+  cidade     String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Log {
+  id           String   @id @default(uuid())
+  level        String
+  message      String?  @db.Text
+  timestamp    DateTime @default(now())
+  route        String?
+  errorMessage String?  @db.Text
+}
+
+model Certificado {
+  id         String   @id @default(uuid())
+  nome       String
+  descricao  String?  @db.VarChar(1000)
+  usuarioId  String
+  eventoId   String
+  arquivoPdf String?  @db.LongText
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Evento {
+  id              String   @id @default(uuid())
+  nomeEvento      String   @db.VarChar(200)
+  descricaoEvento String?  @db.VarChar(1000)
+  cargaHoraria    Float
+  templateId      String?  @db.VarChar(200)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Inscricao {
+  id        String   @id @default(uuid())
+  usuarioId String
+  eventoId  String
+  presente  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Template {
+  id            String @id @default(uuid())
+  nome          String
+  template_json Json
+}

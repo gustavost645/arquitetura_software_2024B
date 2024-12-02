@@ -1,0 +1,35 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// schema.prisma
+model Evento {
+  id                String   @id @default(uuid())
+  nomeEvento        String   @db.VarChar(200)
+  descricaoEvento   String?  @db.VarChar(1000)
+  cargaHoraria      Float
+  templateId        String?  @db.VarChar(200)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Inscricao {
+  id                String   @id @default(uuid())
+  usuarioId         String
+  eventoId          String
+  presente          Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt 
+}
+
+model Template {
+  id            String   @id @default(uuid())
+  nome          String
+  template_json Json
+}

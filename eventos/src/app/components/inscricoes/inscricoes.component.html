@@ -1,0 +1,95 @@
+<div class="formgrid grid">
+  <div class="col-12">
+    <p-toast></p-toast>
+    <div class="card">
+      <p-table #dt1 [value]="listaInscricoes" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true"
+        styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['nomeEvento','descricaoEvento']"
+        scrollDirection="both" [scrollable]="true" scrollHeight="235px" responsiveLayout="scroll">
+        <ng-template pTemplate="caption">
+          <div class="flex justify-content-between flex-column sm:flex-row">
+            <span class="p-input-icon-right mb-2">
+              <h3>Minhas Inscrições</h3>
+            </span>
+            <span class="p-input-icon-left mb-2">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Localizar"
+                class="w-full" />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="min-width: 12rem">
+              <div class="flex justify-content-between align-items-center">
+                Evento
+              </div>
+            </th>
+            <th style="min-width: 25rem">
+              <div class="flex justify-content-between align-items-center">
+                Descrição
+              </div>
+            </th>
+            <th style="min-width: 5rem">
+              <div class="flex justify-content-between align-items-center">
+                Presença
+              </div>
+            </th>
+            <th style="min-width: 10rem">
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td>
+              {{row.nomeEvento}}
+            </td>
+            <td>
+              {{row.descricaoEvento}}
+            </td>
+            <td>
+              {{ row.presente ? 'Sim' : 'Não' }}
+            </td>
+            <td>
+              <div class="flex" style="justify-content: center; align-items: center;">
+                <button *ngIf="!row.presente" pButton pRipple type="button" pTooltip="Registrar Presença"
+                  tooltipPosition="bottom" icon="pi pi-check" style="margin-left: 10px;"
+                  class="p-button-rounded p-button-success p-button-outlined" (click)="registrarPresencaButton(row)"></button>
+
+                <button *ngIf="row.presente" pButton pRipple type="button" pTooltip="Gerar Certificado"
+                  tooltipPosition="bottom" icon="pi pi-file" style="margin-left: 10px;"
+                  class="p-button-rounded p-button-outlined" (click)="gerarCertificadoButton(row)"></button>
+
+                <button *ngIf="!row.presente" pButton pRipple type="button" pTooltip="Cancelar Inscrição"
+                  tooltipPosition="bottom" style="margin-left: 10px;" icon="pi pi-calendar-times"
+                  class="p-button-rounded p-button-danger p-button-outlined" (click)="cancelarInscricao(row)"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">Não foram encontrados registros.</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="loadingbody">
+          <tr>
+            <td colspan="8">Carregando inscrições. Aguarde por favor.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <p-dialog [(visible)]="deleteInscricaoDialog" header="Confirme" [modal]="true" [style]="{width:'450px'}">
+      <div class="flex align-items-center justify-content-center">
+          <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+          <span *ngIf="inscricao">Você tem certeza que deseja cancelar a participação do evento <b>{{inscricao.nomeEvento}}</b>?</span>
+      </div>
+      <ng-template pTemplate="footer">
+          <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Não" (click)="deleteInscricaoDialog = false"></button>
+          <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Sim" (click)="confirmCancelamento()"></button>
+      </ng-template>
+  </p-dialog>
+
+  </div>
+
+</div>

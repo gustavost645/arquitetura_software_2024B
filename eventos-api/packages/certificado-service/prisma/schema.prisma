@@ -1,0 +1,28 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// schema.prisma
+model Certificado {
+  id          String   @id @default(uuid())
+  nome        String
+  descricao   String?  @db.VarChar(1000)
+  usuarioId   String
+  eventoId    String
+  arquivoPdf  String?  @db.LongText
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Template {
+  id            String   @id @default(uuid())
+  nome          String
+  template_json Json
+}
+

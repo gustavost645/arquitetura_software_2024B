@@ -1,0 +1,48 @@
+{
+  "name": "Suprema - Pedidos",
+  "lang":"pt-BR",
+  "start_url": "http://suprema.gsoftwares.com.br/",
+  "short_name": "Suprema - Pedido",
+  "orientation": "portrait",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "assets/layout/images/icon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "assets/layout/images/icon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "assets/layout/images/icon-128x128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "assets/layout/images/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/layout/images/icon-256x256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "assets/layout/images/icon-384x384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "assets/layout/images/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+
+  ]  
+}

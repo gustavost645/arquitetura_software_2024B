@@ -1,0 +1,106 @@
+<div class="formgrid grid">
+  <div class="col-12">
+    <p-toast></p-toast>
+    <div class="card">
+      <p-table #dt1 [value]="listaEventos" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true"
+        styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['nomeEvento','descricaoEvento']"
+        scrollDirection="both" [scrollable]="true" scrollHeight="250px" responsiveLayout="scroll">
+        <ng-template pTemplate="caption">
+          <div class="flex justify-content-between flex-column sm:flex-row">
+            <span class="p-input-icon-right mb-2">
+              <h3>Eventos</h3>
+            </span>
+            <span class="p-input-icon-left mb-2">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Localizar"
+                class="w-full" />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="min-width: 12rem">
+              <div class="flex justify-content-between align-items-center">
+                Evento
+              </div>
+            </th>
+            <th style="min-width: 25rem">
+              <div class="flex justify-content-between align-items-center">
+                Descrição
+              </div>
+            </th>
+            <th style="min-width: 8rem">
+              <div class="flex justify-content-between align-items-center">
+                Carga Horária
+              </div>
+            </th>
+            <th style="min-width: 10rem">
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td>
+              {{row.nomeEvento}}
+            </td>
+            <td>
+              {{row.descricaoEvento}}
+            </td>
+            <td>
+              {{row.cargaHoraria}} Horas
+            </td>
+            <td>
+              <div class="flex" style="justify-content: center; align-items: center;">
+                <button pButton pRipple type="button" pTooltip="Ver detalhes" tooltipPosition="bottom"
+                  style="margin-left: 10px;" icon="pi pi-tags" class="p-button-rounded p-button-outlined p-button-success"
+                  (click)="verDetalhesButton(row)"></button>
+
+                <button pButton pRipple type="button" pTooltip="Inscrever-se" tooltipPosition="bottom"
+                  style="margin-left: 10px;" icon="pi pi-calendar-plus" class="p-button-rounded p-button-outlined"
+                  (click)="registerButton(row)"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">Não foram encontrados registros.</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="loadingbody">
+          <tr>
+            <td colspan="8">Carregando eventos. Aguarde por favor.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <p-dialog [(visible)]="eventosDialog" [style]="{width: '450px'}" header="Detalhes do Evento" [modal]="true"
+      class="p-fluid">
+      <ng-template pTemplate="content">
+        <div class="field">
+          <label for="id">Código</label>
+          <input type="text" pInputText id="id" [(ngModel)]="eventoEdit.id" required autofocus  [disabled]="true"/>
+        </div>
+        <div class="field">
+          <label for="name">Nome do Evento</label>
+          <input type="text" pInputText id="name" [(ngModel)]="eventoEdit.nomeEvento" required autofocus [disabled]="true"/>
+        </div>
+        <div class="field">
+          <label for="description">Descrição</label>
+          <textarea id="description" pInputTextarea [(ngModel)]="eventoEdit.descricaoEvento" required rows="3"
+            cols="20" [disabled]="true"></textarea>
+        </div>
+        <div class="field">
+          <label for="carga">Carga Horária</label>
+          <p-inputNumber id="carga" [(ngModel)]="eventoEdit.cargaHoraria" [disabled]="true"></p-inputNumber>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <button pButton pRipple label="Sair" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+      </ng-template>
+    </p-dialog>
+
+  </div>
+</div>

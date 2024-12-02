@@ -1,0 +1,13 @@
+ir ate a pasta do sistema via terminal
+
+dar um 
+npm install
+
+para instalar os pacotes
+depois
+
+npm run dev
+para iniciar todos os serviços
+
+ou ir individualmente em cada servisse que esta no package
+

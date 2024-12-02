@@ -1,0 +1,24 @@
+<div class="layout-topbar">
+    <a class="layout-topbar-logo" routerLink="">
+        <!--<img src="assets/layout/images/{{layoutService.config.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">-->
+        <img src="assets/apple-icon-180x180.png" alt="logo">
+        <span>Eventos</span>
+    </a>
+
+    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+        <i class="pi pi-bars"></i>
+    </button>
+
+    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
+        <i class="pi pi-ellipsis-v"></i>
+    </button>
+
+    <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+      <span class="layout-topbar-span-user">{{user?.username}}</span>
+      <button class="p-link layout-topbar-button" (click)="logout()" pTooltip="Logout" tooltipPosition="top">
+          <i class="pi pi-sign-out"></i>
+          <span>Logout</span>
+      </button>
+    </div>
+
+</div>

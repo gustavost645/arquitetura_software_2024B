@@ -1,0 +1,21 @@
+/*.layout-topbar-profile {
+  position: relative;
+  display: inline-block;
+}
+
+.layout-topbar-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.layout-topbar-profile:hover .layout-topbar-menu {
+  display: block;
+}*/
+
+.layout-topbar-span-user {
+  margin-top: 10px;
+}

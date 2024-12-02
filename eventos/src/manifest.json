@@ -1,0 +1,17 @@
+{
+  "name": "Eventos",
+  "lang":"pt-BR",
+  "start_url": "/",
+  "orientation": "portrait",
+  "short_name": "Eventos",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2196F3",
+  "icons": [
+    {
+      "src": "./src/assets/cooking_book_96px.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
